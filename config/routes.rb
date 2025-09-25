@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "movies/create"
   get "movies/update"
   get "movies/destroy"
-  
+
   resources :movies
   root "movies#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
