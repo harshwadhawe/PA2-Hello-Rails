@@ -1,0 +1,26 @@
+<h1>RottenPotatoes</h1>
+<p><%= link_to "Add Movie", new_movie_path %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Rating</th>
+      <th>Release date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |m| %>
+      <tr>
+        <td><%= link_to m.title, m %></td>
+        <td><%= m.rating %></td>
+        <td><%= m.release_date %></td>
+        <td>
+          <%= link_to "Edit", edit_movie_path(m) %> |
+          <%= link_to "Delete", m, data: { turbo_method: :delete, turbo_confirm: "Delete #{m.title}?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
