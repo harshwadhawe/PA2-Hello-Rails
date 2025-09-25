@@ -1,3 +1,6 @@
-<h1>Edit Movie</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">Edit Movie</h1>
+  <%= link_to "Back", movie_path(@movie), class: "btn btn-outline-secondary" %>
+</div>
+
 <%= render "form", movie: @movie %>
-<p><%= link_to "Back", movies_path %></p>

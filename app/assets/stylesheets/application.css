@@ -8,3 +8,41 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+/* app/assets/stylesheets/application.css */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 2rem;
+  background-color: #fafafa;
+  color: #333;
+}
+
+h1, h2 {
+  color: #b22222; /* dark red */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.notice {
+  padding: 0.5rem;
+  background-color: #e0ffe0;
+  border: 1px solid #00a000;
+  margin-bottom: 1rem;
+}
