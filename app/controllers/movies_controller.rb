@@ -2,7 +2,12 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @movies = Movie.order(:title)
+    allowed = { "title" => "title", "rating" => "rating", "release_date" => "release_date" }
+    @sort = allowed[params[:sort]] || "title"
+    @dir  = %w[asc desc].include?(params[:dir]) ? params[:dir] : "asc"
+  
+    # Safe,  order
+    @movies = Movie.order(@sort => @dir.to_sym)
   end
 
   def show

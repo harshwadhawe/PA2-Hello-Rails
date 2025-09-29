@@ -46,3 +46,96 @@ a:hover {
   border: 1px solid #00a000;
   margin-bottom: 1rem;
 }
+
+
+/* Layout / base */
+:root { --bg:#fafafa; --fg:#333; --primary:#b22222; --muted:#666; --border:#ddd; --flash-green:#e8ffe8; --flash-red:#ffe8e8; --highlight:#fff3cd; }
+* { box-sizing: border-box; }
+body { margin: 2rem; background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 1rem; }
+
+h1, h2 { color: var(--primary); margin: 0 0 1rem 0; }
+
+/* Links & buttons */
+a { color: #0a58ca; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.btn { display:inline-block; padding:.45rem .8rem; border:1px solid var(--border); border-radius:.375rem; background:#fff; }
+.btn.primary { background:#0a58ca; color:#fff; border-color:#0a58ca; }
+.btn.danger { background:#cc1f1a; color:#fff; border-color:#cc1f1a; }
+.btn.muted { background:#f6f6f6; }
+
+/* Flash */
+.flash { padding:.6rem .8rem; border:1px solid var(--border); border-radius:.375rem; margin-bottom:1rem; }
+.flash.notice { background: var(--flash-green); }
+.flash.alert  { background: var(--flash-red); }
+
+/* Tables */
+table { width:100%; margin-top: 1rem; border-collapse: collapse; margin-top: 1rem; background:#fff; }
+th, td { border:1px solid var(--border); padding:.5rem .6rem; vertical-align: top; }
+thead th { background:#f2f2f2; text-align:left; }
+.actions { white-space: nowrap; }
+
+/* Sorting */
+th .sort-link { font-weight:600; color:inherit; }
+th.sorted { background: var(--highlight); }
+th.sorted.asc  .sort-link::after { content: " ▲"; font-size:.85em; color: var(--muted); }
+th.sorted.desc .sort-link::after { content: " ▼"; font-size:.85em; color: var(--muted); }
+
+/* Forms */
+label { display:block; margin:.5rem 0 .25rem; font-weight:600; }
+input[type="text"], input[type="date"], select, textarea {
+  width:100%; padding:.5rem; border:1px solid var(--border); border-radius:.375rem; background:#fff;
+}
+textarea { resize: vertical; min-height: 120px; }
+.form-row { margin-bottom: 1rem; }
+.form-actions { margin-top: 1rem;display:flex; gap:.5rem; }
+
+
+/* === Small Enhancements (append below your existing CSS) === */
+
+/* Buttons: nicer hover/focus */
+.btn {
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(0.97); }
+.btn:focus { outline: 2px solid #88b7ff; outline-offset: 2px; box-shadow: 0 0 0 3px rgba(0, 102, 204, .15); }
+.btn.danger:hover { filter: brightness(0.95); }
+
+/* Inputs: subtle focus ring */
+input[type="text"], input[type="date"], select, textarea {
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #0a58ca;
+  box-shadow: 0 0 0 3px rgba(10, 88, 202, .15);
+  outline: none;
+}
+
+/* Table: zebra + hover */
+tbody tr:nth-child(odd) { background: #fbfbfb; }
+tbody tr:hover { background: #fffdf2; }
+
+/* Definition list (show page) */
+dl { 
+  display: grid; 
+  grid-template-columns: 160px 1fr; 
+  grid-column-gap: 1rem; 
+  grid-row-gap: .5rem; 
+}
+dt { font-weight: 700; color: var(--muted); }
+dd { margin: 0; }
+
+/* Topbar utility (use instead of inline styles if you want) */
+.topbar { 
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center; 
+  gap:1rem; 
+  margin-bottom:1rem; 
+}
+
+/* Small utilities */
+.mt-1{margin-top:.5rem}.mt-2{margin-top:1rem}.mb-1{margin-bottom:.5rem}.mb-2{margin-bottom:1rem}
+.gap-1{gap:.5rem}.gap-2{gap:1rem}

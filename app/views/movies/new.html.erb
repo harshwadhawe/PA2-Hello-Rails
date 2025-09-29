@@ -1,6 +1,6 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="mb-0">New Movie</h1>
-  <%= link_to "Back", movies_path, class: "btn btn-outline-secondary" %>
+<div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1rem;">
+  <h1>New Movie</h1>
+  <%= link_to "Back", movies_path, class: "btn muted" %>
 </div>
 
 <%= render "form", movie: @movie %>

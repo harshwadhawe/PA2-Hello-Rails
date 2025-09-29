@@ -1,16 +1,23 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="mb-0">RottenPotatoes</h1>
-  <%= link_to "Add Movie", new_movie_path, class: "btn btn-primary" %>
+<div style="display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+  <h1>RottenPotatoes</h1>
+  <%= link_to "Add Movie", new_movie_path, class: "btn primary" %>
 </div>
 
 <% if @movies.any? %>
-  <table class="table table-striped table-bordered">
-    <thead class="table-dark">
+  <table>
+    <thead>
       <tr>
-        <th>Title</th>
-        <th>Rating</th>
-        <th>Release date</th>
-        <th style="width: 220px;"></th>
+        <% next_dir = ->(col) { (@sort == col && @dir == "asc") ? "desc" : "asc" } %>
+        <th class="<%= 'sorted ' + @dir if @sort == 'title' %>">
+          <%= link_to "Title", movies_path(sort: "title", dir: next_dir.call("title")), class: "sort-link" %>
+        </th>
+        <th class="<%= 'sorted ' + @dir if @sort == 'rating' %>">
+          <%= link_to "Rating", movies_path(sort: "rating", dir: next_dir.call("rating")), class: "sort-link" %>
+        </th>
+        <th class="<%= 'sorted ' + @dir if @sort == 'release_date' %>">
+          <%= link_to "Release date", movies_path(sort: "release_date", dir: next_dir.call("release_date")), class: "sort-link" %>
+        </th>
+        <th class="actions">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,17 +26,15 @@
           <td><%= link_to m.title, m %></td>
           <td><%= m.rating %></td>
           <td><%= m.release_date %></td>
-          <td class="text-nowrap">
-            <%= link_to "Show", m, class: "btn btn-sm btn-outline-primary" %>
-            <%= link_to "Edit", edit_movie_path(m), class: "btn btn-sm btn-secondary" %>
-            <%= link_to "Delete", m,
-                  data: { turbo_method: :delete, turbo_confirm: "Delete #{m.title}?" },
-                  class: "btn btn-sm btn-danger" %>
+          <td class="actions">
+            <%= link_to "Show", m, class: "btn" %>
+            <%= link_to "Edit", edit_movie_path(m), class: "btn" %>
+            <%= link_to "Delete", m, data: { turbo_method: :delete, turbo_confirm: "Delete #{m.title}?" }, class: "btn danger" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <div class="alert alert-info">No movies yet. Add your first one!</div>
+  <div class="flash">No movies yet. Add your first one!</div>
 <% end %>

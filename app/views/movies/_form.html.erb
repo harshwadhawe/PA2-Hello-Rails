@@ -1,8 +1,8 @@
-<%= form_with(model: movie, class: "needs-validation") do |f| %>
+<%= form_with(model: movie) do |f| %>
   <% if movie.errors.any? %>
-    <div class="alert alert-danger">
-      <h5 class="mb-2"><%= pluralize(movie.errors.count, "error") %> prevented this movie from being saved:</h5>
-      <ul class="mb-0">
+    <div class="flash alert">
+      <h5><%= pluralize(movie.errors.count, "error") %> prevented this movie from being saved:</h5>
+      <ul>
         <% movie.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
@@ -10,28 +10,28 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= f.label :title, class: "form-label" %>
-    <%= f.text_field :title, class: "form-control", required: true %>
+  <div class="form-row">
+    <%= f.label :title %>
+    <%= f.text_field :title, required: true %>
   </div>
 
-  <div class="mb-3">
-    <%= f.label :rating, class: "form-label" %>
-    <%= f.select :rating, Movie::RATINGS, {}, class: "form-select" %>
+  <div class="form-row">
+    <%= f.label :rating %>
+    <%= f.select :rating, Movie::RATINGS %>
   </div>
 
-  <div class="mb-3">
-    <%= f.label :release_date, class: "form-label" %>
-    <%= f.date_field :release_date, class: "form-control", required: true %>
+  <div class="form-row">
+    <%= f.label :release_date %>
+    <%= f.date_field :release_date, required: true %>
   </div>
 
-  <div class="mb-3">
-    <%= f.label :description, class: "form-label" %>
-    <%= f.text_area :description, rows: 5, class: "form-control" %>
+  <div class="form-row">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 5 %>
   </div>
 
-  <div class="d-flex gap-2">
-    <%= f.submit class: "btn btn-primary" %>
-    <%= link_to "Cancel", movies_path, class: "btn btn-outline-secondary" %>
+  <div class="form-actions">
+    <%= f.submit class: "btn primary" %>
+    <%= link_to "Cancel", movies_path, class: "btn muted" %>
   </div>
 <% end %>
